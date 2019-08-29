@@ -1,0 +1,37 @@
+{
+  "name": "b8694d827c0f13f22ed3bc610c19ec15",
+  "version": "1.0.0",
+  "description": "b8694d827c0f13f22ed3bc610c19ec15",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/db/create-tables ; node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReDemoNBR/b8694d827c0f13f22ed3bc610c19ec15.git"
+  },
+  "author": "San 'rdn' Mônico <san@monico.com.br> (https://monico.com.br)",
+  "contributors": [
+    "San 'rdn' Mônico <san@monico.com.br> (https://monico.com.br)"
+  ],
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ReDemoNBR/b8694d827c0f13f22ed3bc610c19ec15/issues"
+  },
+  "homepage": "https://github.com/ReDemoNBR/b8694d827c0f13f22ed3bc610c19ec15#readme",
+  "dependencies": {
+    "bytes": "^3.1.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "frameguard": "^3.1.0",
+    "helmet": "^3.20.1",
+    "inflection": "^1.12.0",
+    "ms": "^2.1.2",
+    "pg": "^7.12.1",
+    "referrer-policy": "^1.2.0",
+    "sequelize": "^5.17.0"
+  }
+}
