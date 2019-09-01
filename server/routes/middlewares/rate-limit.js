@@ -40,7 +40,6 @@ module.exports = (namespace="default") => {
                 console.warn(e);
             }
         };
-        
     }
     
     return ExpressRateLimit({
