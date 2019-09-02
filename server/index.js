@@ -8,6 +8,7 @@ if (Cluster.isMaster) {
     for (let i=0; i<PROCESS_WORKERS_COUNT; i++) Cluster.fork();
 } else {
     const Express = require("express");
+    const {resolve} = require("path");
     const {SERVER_API_PORT, PROD, MAX_REQUEST_BODY_SIZE, RATE_LIMIT_WINDOW, RATE_LIMIT_REQUESTS} = require("./util/env");
     const app = Express();
     app.listen = require("util").promisify(app.listen);
@@ -23,7 +24,14 @@ if (Cluster.isMaster) {
     else app.set("json spaces", "\t");
     app.set("etag", "strong");
     
-    app.use(require("./routes"));
+    // views
+    app.engine("handlebars", require("express-handlebars")());
+    app.set("view engine", "handlebars");
+    app.set("views", resolve(__dirname, "../client/views"));
+    
+    app.use("/static", Express.static(resolve(__dirname, "../client/static")));
+    app.use("/api", require("./routes"));
+    app.use(require("../client/"));
     
     require("./db").sync({logging: PROD?false:undefined}).then(async ()=>{
         await app.listen(SERVER_API_PORT);

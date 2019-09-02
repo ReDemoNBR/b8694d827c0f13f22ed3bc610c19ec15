@@ -1,0 +1,37 @@
+<div class="container">
+  <header>
+    <h2><img src="/static/icon.jpg" alt="icon"> <span>Quem deve ser</span> eliminado?</h2>
+  </header>
+  <div class="users">
+    {{#candidates}}
+      <div class="user" onclick="select(this, {{id}})">
+        <h4>Participante {{id}}</h4>
+        <img src="/static/candidate-{{id}}.jpg" alt="User {{id}}">
+        <p>Vote pelo telefone 0800-555-000 ou via SMS para o número 8000</p>
+      </div>
+    {{/candidates}}
+  </div>
+  <footer>
+    <button onclick="submit()">Envie seu voto agora</button>
+  </footer>
+</div>
+<script>
+let candidateId;
+
+function select(element, id) {
+  Array.from(document.querySelectorAll("div.user-selected")).forEach(element=>element.classList.remove("user-selected"));
+  element.classList.add("user-selected");
+  candidateId = id;
+}
+
+async function submit() {
+  if (!candidateId) return;
+  try {
+    let response = await XHR("/api/vote", "POST", {id: candidateId});
+    location.replace(`/vote?${new URLSearchParams({id: candidateId})}`);
+  } catch(e) {
+    if (e.status===429) return alert("Bots não podem votar"); //treat HTTP 429 Too Many Requests
+    throw e;
+  }
+}
+</script>

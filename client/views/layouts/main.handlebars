@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paredão BBB</title>
+  <link rel="stylesheet" href="/static/template.css">
+</head>
+<body>
+  {{{body}}}
+</body>
+<script>
+async function XHR(url, method="GET", body={}) {
+  let response = await fetch(url, {method, body: JSON.stringify(body), headers: {"Content-Type": "application/json"}});
+  if (response.ok) return await response.json();
+  throw response;
+}
+</script>
+</html>

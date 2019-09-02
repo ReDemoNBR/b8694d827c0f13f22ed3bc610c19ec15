@@ -1,0 +1,19 @@
+<div class="container">
+  <header>
+    <h2><img src="/static/icon.jpg" alt="icon"> <span>Quem deve ser</span> eliminado?</h2>
+  </header>
+  {{#candidate}}
+    <h3>Parabéns! Seu voto para {{name}} foi enviado com sucesso.</h3>
+  {{/candidate}}
+  
+  <div class="users">
+  {{#partials}}
+    <div class="user">
+      <img src="/static/candidate-{{id}}.jpg" alt="User {{id}}">
+      <div class="progress-bar">
+        <div class="progress" style="width: {{percentString}}"></div>
+      </div>
+      <p>{{percentString}} votaram no <strong>{{name}}</strong></p>
+    </div>
+  {{/partials}}
+</div>

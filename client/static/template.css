@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #555;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+.container{
+  width: 600px;
+  margin: 100px auto 0;
+  background-color: #FFF;
+  border: solid 5px #f2f2f2;
+  border-radius: 4px;
+}
+header{
+  text-align: center;
+  border-bottom: #f2f2f2 dotted 3px;
+}
+h2{
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 30px;
+  margin: 20px 0;
+}
+h2 img{
+  vertical-align: middle;
+}
+h2 span{
+  font-weight: normal ;
+}
+h3{
+  font-size: 16px;
+  text-align: center;
+  margin: 20px;
+}
+.users{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  width: 90%;
+}
+.user{
+  width: 48%;
+}
+.user p{
+  font-size: 11px;
+  margin: 5px 0;
+  color: #999;
+  line-height: 16px;
+}
+.user img{
+  border: solid 1px #CCC;
+  border-radius: 4px;
+}
+.user:hover img{
+  border: solid 3px #f89e09;
+}
+.user-selected img {
+  border: solid 3px #f89e09;
+}
+.progress-bar{
+  border-radius: 4px;
+  border: solid 1px #CCC;
+  overflow: hidden;
+}
+.progress{
+  background-color:#f89e09;
+  height: 10px;
+}
+footer{
+  text-align: center;
+  border-top: solid 1px #EEE
+}
+button{
+  background: linear-gradient(#2d95ec, #166eb8);
+  color: #FFF;
+  border: solid 1px #166eb8;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+button:hover{
+  background: linear-gradient(#f89e09, #d07b14);
+  border-color: #d07b14;
+}
+footer{
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+h6{
+  color: #f89e09;
+  font-size: 32px;
+}
