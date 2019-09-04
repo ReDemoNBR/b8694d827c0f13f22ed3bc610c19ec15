@@ -42,3 +42,5 @@ if (Cluster.isMaster) {
         process.exit(1);
     });
 }
+
+module.exports = Cluster;

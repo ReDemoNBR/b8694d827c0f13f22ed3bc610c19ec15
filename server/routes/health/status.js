@@ -32,7 +32,6 @@ function parseTime(seconds) {
 }
 
 module.exports = async (req, res)=>{
-    const maxmind = await stat(`${MAXMIND_DB_PATH}/${MAXMIND_DB_FILENAME}`);
     return res.send({
         worker: Cluster.id,
         status: "OK",
@@ -57,18 +56,10 @@ module.exports = async (req, res)=>{
         },
         application: {
             databaseTimezone: DB_TIMEZONE,
-            defaultLimit: DEFAULT_LIMIT,
-            defaultMaxLimit: DEFAULT_MAX_LIMIT,
             maxRequestBodySize: MAX_REQUEST_BODY_SIZE,
-            maxUploadFileSize: MAX_UPLOAD_FILE_SIZE,
             httpHeader: API_HEADER_NAME,
             version: API_HEADER_VALUE,
             workers: PROCESS_WORKERS_COUNT
-        },
-        maxmind: {
-            databaseType: MAXMIND_DB_FILENAME,
-            databaseSize: Bytes(maxmind.size),
-            lastUpdate: maxmind.mtime
         }
     });
 };
