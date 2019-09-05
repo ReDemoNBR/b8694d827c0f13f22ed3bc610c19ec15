@@ -1,0 +1,30 @@
+[Unit]
+Description=b8694d827 server
+After=postgresql.service
+AssertPathIsReadWrite=/var/srv/b8694d827
+
+[Service]
+## Settings
+Type=simple
+ExecStartPre=/usr/bin/node server/db/create-tables.js
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=1 second
+
+## Paths
+WorkingDirectory=/var/srv/b8694d827
+
+## Credentials/Security/Sandbox
+User=b8694d827
+Group=b8694d827
+NoNewPrivileges=true
+ProtectSystem=true
+ProtectHome=true
+PrivateTmp=true
+PrivateUsers=true
+
+## Environment
+EnvironmentFile=/etc/b8694d827/env.conf
+
+[Install]
+WantedBy=multi-user.target

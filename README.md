@@ -2,32 +2,87 @@
 
 Show case for tests
 
-## **Introduction**
+## **INTRODUCTION**
+This project is a REST API server to manage a simple voting system to choose which participant should be removed.
+Besides this, there is also a frontend application for simplicity of common users.  
 
-## **Summary**
+It is created using NodeJS, that manages a PostgreSQL database.
+
+## **SUMMARY**
+-   [Requirements](#requirements)
+-   [How to Install](#how-to-install)
+-   [How to Run](#how-to-run)
+-   [API Routes](#api-routes)
+-   [Environment Variables](#environment-variables)
+-   [Trivia](#trivia)
 
 
-## **Purpose**
-
-
-## **Requirements**
--   GNU/Linux v5.2.9 environment
+## **REQUIREMENTS**
+-   GNU/Linux v5.2.11 environment
 -   Bash v5.0.9
 -   NodeJS v12.9.1
--   NPM v6.11.2
+-   NPM v6.11.3
 -   PostgreSQL v11.5 (if running database locally or if using backup scripts)
 
 
-## **Scope**
+## **HOW TO INSTALL**
+In development environment, install all the [requirements](#requirements) above, clone this repository.
+_Note that in this example I'm using the default environment variables (including sensitive data), but they can be changed via [environment variables](#environment-variables)_
+
+```shell
+# to install dependencies
+npm install
+
+# if you don't have the 'admin' PostgreSQL user,
+# create the PostgreSQL user
+# (set password to 'admin' when prompted - for development environment tests)
+sudo -u postgres createuser --pwprompt --superuser admin
+
+# create the PostgreSQL database
+sudo -u postgres createdb --owner admin
+
+# to create the participants and let the project ready to run
+npm run prepare
+```
+After this, the project is ready to run in development environment
 
 
-## **API Routes**
+## **HOW TO RUN**
+In development environment, run
+```shell
+npm start
+```
+
+## **API ROUTES**
+
+### HTML Pages
+#### **GET** `/`
+Shows a stylized interface for the voting, with pictures and photos of the participants
+
+#### **GET** `/vote`
+Shows the confirmation of the vote with partial results
+
+### Vote API
+
+#### **POST** `/api/vote`
+Vote for participant to leave
+-   `id`: ID number of the participant you are voting for
+
+```shell
+POST /api/vote
+{
+    "id": "1"
+}
+```
+
+#### **GET** `/api/vote/result`
+Get statistics of the voting until the moment. It includes total votes, total votes per participant and the hourly votes per participant.
 
 
 ## **ENVIRONMENT VARIABLES**
 Below is a list environment variables this project loads. You can set it in multiple ways. In local development
 it's suggested to use `export`, but in production environment one should add these variables in a file that is
-loaded by Systemd service manager (file path is located in `/etc/game-pulse/env.conf`)
+loaded by Systemd service manager (file path is located in `/etc/b8694d827/env.conf`)
 -   **DATABASE**:
     -   **PGHOST** or **DB_HOST**: Database host address. The system only loads `DB_HOST` if `PGHOST` is not defined. Defaults to `localhost`
     -   **PGPORT** or **DB_PORT**: Database access port. The system only loads `DB_PORT` if `PGPORT` is not set. Defaults to `5432`
@@ -60,3 +115,7 @@ loaded by Systemd service manager (file path is located in `/etc/game-pulse/env.
     -   `/health/status` returns server information, like memory usage, number of CPUs, OS etc
 -   **Cluster Master process**: The cluster process has a master process and it doesn't listen to connections nor access the database. It only manages the other worker processes
 -   **Cluster Worker processes**: The cluster process must have at least 1 worker process in order to listen to connection and access database as the master process isn't designed for this
+
+
+## **TRIVIA**
+-   The name of the project comes from the MD5sum of `bbb`. You can get it in bash by doing `echo bbb | md5sum`
